@@ -1,0 +1,172 @@
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+          <%= render 'layouts/shared/admin/sidebar' %>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                  <%= render 'layouts/shared/admin/topbar' %>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                  <%= render 'layouts/shared/admin/content' %>
+                      <ul>
+
+            </div>
+            <!-- End of Main Content -->
+
+    
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+      <%= render 'layouts/shared/admin/layoutmodal' %>
+    <!-- End Logout Modal-->
+
+
+
+
+
+
+
+    <br>
+<style>
+
+/* Style for the records container */
+.records-container {
+  width: 80%;        /* Takes up 80% of the page width */
+  margin: 0 auto;    /* Centers the container horizontally */
+  padding: 20px;     /* Adds padding inside the container */
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 8px;  /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Style for the table */
+.records-table {
+  width: 100%;        /* Makes the table take up full width of its container */
+  border-collapse: collapse; /* Collapses borders between table cells */
+  margin-top: 20px;   /* Adds space above the table */
+}
+
+.records-table th, .records-table td {
+  padding: 12px;      /* Adds padding inside each cell */
+  text-align: left;   /* Aligns text to the left */
+  border-bottom: 1px solid #ddd;  /* Adds a light border at the bottom of each row */
+}
+
+.records-table th {
+  background-color: #4CAF50;  /* A pleasant green background for header */
+  color: white;               /* White text color */
+}
+
+.records-table tr:nth-child(even) {
+  background-color: #f2f2f2;  /* Alternating row colors */
+}
+
+.records-table tr:hover {
+  background-color: #ddd;  /* Highlight rows when hovered */
+}
+
+.records-table td {
+  color: #333;  /* Dark text color for the cells */
+}
+
+</style>
+
+
+
+
+
+
+<div style="width: 80%; margin: 0 auto;">
+  <h1>Admin Dashboard - All Records</h1>
+
+  <div>
+    <h2>Total Users: <%= @user_count %></h2>
+  </div>
+
+
+  <center>    <h1>User List</h1></center>
+
+    <div class="records-container">
+      <% if @users.any? %>
+        <table class="records-table">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Created At</th>
+              <th>Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.email %></td>
+                <td><%= user.role %></td>
+                <td><%= user.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+                <td><%= user.updated_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>No users found.</p>
+      <% end %>
+    </div>
+    
+  <div>
+    <h2>Table Records</h2>
+
+    <% @models.each do |model_name, records| %>
+      <div style="margin-bottom: 30px;">
+        <h3><%= model_name %> Records</h3>
+        <% if records.any? %>
+          <table style="width: 100%; border: 1px solid #ccc; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <% records.first.attributes.keys.each do |key| %>
+                  <th style="padding: 10px; border: 1px solid #ccc;"><%= key.capitalize %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <% records.each do |record| %>
+                <tr>
+                  <% record.attributes.each_value do |value| %>
+                    <td style="padding: 10px; border: 1px solid #ccc;"><%= value %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>No records to display.</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+</body>

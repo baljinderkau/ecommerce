@@ -1,0 +1,191 @@
+<section class="home">
+  <div class="home-text">
+  <h4>Welcome to Ruby Walmart - About Us</h4>
+  <h1>Sales is boosted with Ruby Shop!</h1>
+  
+  <p>At <strong>Ruby Shop</strong>, we are dedicated to empowering businesses of all sizes to reach their full potential. Whether you're just starting or looking to expand your e-commerce presence, Ruby Shop offers the tools, features, and support to help you succeed. Our platform is designed with the modern retailer in mind, combining seamless integrations, user-friendly features, and an intuitive interface that makes managing your store simple and efficient.</p>
+  
+  <p>We believe that every business deserves the opportunity to thrive in the digital marketplace, which is why we've made it easy to create, customize, and optimize your online store. With Ruby Shop, you can:</p>
+  
+  <ul>
+    <li><strong>Increase Visibility:</strong> Reach millions of potential customers with a platform that supports both local and global sales.</li>
+    <li><strong>Enhance Customer Experience:</strong> Provide your customers with a smooth, personalized shopping experience that keeps them coming back.</li>
+    <li><strong>Maximize Sales:</strong> Take advantage of tools designed to help you optimize your product listings, promotions, and marketing strategies.</li>
+    <li><strong>Manage with Ease:</strong> Simplify your daily operations with an easy-to-use dashboard that lets you track sales, manage inventory, and process orders with just a few clicks.</li>
+    <li><strong>Build Brand Loyalty:</strong> Create lasting relationships with your customers through loyalty programs and targeted communication.</li>
+  </ul>
+  
+  <p>With Ruby Shop, you're not just getting a platform—you're getting a partner in your business success. Our team of experts is here to guide you every step of the way, ensuring that your e-commerce store is equipped for success. Join the hundreds of successful businesses that have boosted their sales with Ruby Shop today!</p>
+  
+    <a href="#product" class="btn-home">Explore Now</a>
+  </div>
+
+  <div class="home-img">
+  <img src="https://plus.unsplash.com/premium_photo-1661774910035-05257f7d73a6?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+       alt="Card Image" 
+       style="width: 800px; height: 600px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+</div>
+
+</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<%# section feature %>
+<section class="feature">
+  <div class="middle-text">
+    <h2>More features, have examples above, discover.</h2>
+    <h3>Info-products, clothes, and everything else at <strong>Ruby Shop</strong></h3>
+  </div>
+  <br>
+  <br>
+  <div class="feature-content">
+    <div class="row">
+      <div class="main-row">
+        <div class="row-text">
+          <h6>Explore the Products</h6>
+          <a href="#" class="row-btn">Show me all</a>
+          <div class="row-img">
+            <img src="https://images.unsplash.com/photo-1665686310429-ee43624978fa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            style="width: 300px; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <img src="https://plus.unsplash.com/premium_photo-1681488262364-8aeb1b6aac56?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            style="width: 300px; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <img src="https://images.unsplash.com/photo-1647221598398-934ed5cb0e4f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            style="width: 300px; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <img src="https://plus.unsplash.com/premium_photo-1684785618727-378a3a5e91c5?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            style="width: 300px; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="product" class="product">
+  <div class="middle-text">
+   <h2>
+  <span style="color: #3498db;">Available</span>
+  <strong style="color: #e74c3c;"> products</strong>
+</h2>
+
+  </div>
+
+<% @products.each_with_index do |product, index| %>
+  <div>
+    <div class="product-content" style="<%= 'display: none;' if index > 9 %>">
+      <div class="box">
+        <div class="box-img">
+          <% if product.image.attached? %>
+            <%= image_tag(product.image, width: 300, heigth: 300 ) %>
+          <% else %>
+           
+          <% end %>
+        </div>
+        <h3>Owner: <%= product.user.email %></h3>
+        <h3><%= product.name %></h3>
+        <h4><%= product.description %></h4>
+        <h4>Category: <%= product.category %></h4>
+        <div class="inbox">
+          <div>
+            <a href="<%= product_path(product) %>" class="price"><%= number_to_currency(product.price, unit: 'R$', separator: ',', delimiter: '.') %></a>
+            <% if product && current_user == product.user %>
+              <%= link_to "Edit", edit_product_path(product), class: "edit" %>
+              <%= link_to "Show", product_path(product), class: "edit" %>
+            <% end %>
+            <% if current_user.present? && (current_user.admin? || (product.present? && current_user == product.user)) %>
+              <%= link_to "Delete?", destroy_product_path(product), class: "edit" %>
+            <% end %>
+          </div>
+          <%# <div class="rating"> %>
+            <%# <% (1..5).each do |i| %> 
+              <%# <a href="#"><i class="bi bi-star-fill"></i></a> %>
+            <%# <% end %> 
+          <%# </div> %>
+        </div>
+        <%= link_to favorite_product_path(product), method: :post, remote: true do %>
+          <div class="heart">
+            <i class="bi bi-suit-heart"></i>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <% if index == 9 && @products.length > 9 %>
+    <div class="show-more">
+      <button class="btn-home" onclick="showMoreProducts()"> > </button>
+    </div>
+  <% end %>
+<% end %>
+</section>
+
+<script>
+  function showMoreProducts() {
+    var showMoreButton = document.querySelector('.show-more button');
+    var buttonText = showMoreButton.textContent;
+
+    if (buttonText == " > ") {
+      document.querySelectorAll('.product-content').forEach(function(el) {
+        el.style.display = 'block';
+      });
+      showMoreButton.textContent = " < ";
+    } else {
+      document.querySelectorAll('.product-content').forEach(function(el, index) {
+        if (index > 5) {
+          el.style.display = 'none';
+        }
+      });
+      showMoreButton.textContent = " > ";
+    }
+  }
+</script>
+<section class="contact" style="background-color: #343a40; padding: 40px 20px; color: #f8f9fa;">
+  <div class="main-contact" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+    <!-- First Column -->
+    <div class="contact-content" style="flex: 1; min-width: 200px;">
+      <h5 style="color: #f8f9fa; margin-bottom: 15px;">Getting started</h5>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Release Notes</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Dark Mode</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Browser Support</a></li>
+      </ul>
+    </div>
+
+    <!-- Second Column -->
+    <div class="contact-content" style="flex: 1; min-width: 200px;">
+      <h5 style="color: #f8f9fa; margin-bottom: 15px;">Explore</h5>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Prototyping</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Design systems</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Pricing</a></li>
+      </ul>
+    </div>
+
+    <!-- Third Column -->
+    <div class="contact-content" style="flex: 1; min-width: 200px;">
+      <h5 style="color: #f8f9fa; margin-bottom: 15px;">Resources</h5>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Best practices</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Support</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;">Developers</a></li>
+      </ul>
+    </div>
+
+    <!-- Fourth Column -->
+    <div class="contact-content" style="flex: 1; min-width: 200px;">
+      <h5 style="color: #f8f9fa; margin-bottom: 15px;">Community</h5>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;"><i class="bi bi-shop"></i> Repository</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;"><i class="bi bi-github"></i> My GitHub</a></li>
+        <li style="margin-bottom: 10px;"><a href="#" style="color: #adb5bd; text-decoration: none;"><i class="bi bi-linkedin"></i> LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="end-text" style="text-align: center; background-color: #212529; color: #adb5bd; padding: 15px 0; margin-top: 0;">
+  <p style="margin: 0;">© 2024 Ruby Shop</p>
+</div>

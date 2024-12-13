@@ -1,0 +1,19 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="text-center">
+  <%= form_tag(add_balance_user_path(current_user), method: :post, onsubmit: "redirectToRoot()") do %>
+    <%= label_tag :amount, "Type your Amount...", autofocus: true %>
+    <%= number_field_tag :amount, nil, min: 0 %>
+    <%= submit_tag "Add Balance" %>
+  <% end %>
+</div>
+
+<script>
+  function redirectToRoot() {
+    window.location.href = "<%= root_path %>";
+    return true; // Permitir que o formulário seja enviado após o redirecionamento
+  }
+</script>

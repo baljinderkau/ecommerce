@@ -1,0 +1,160 @@
+<style>
+  /* Global Styles */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  h2 strong {
+    color: #e74c3c;
+  }
+
+  /* Card Styling */
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-body {
+    padding: 30px;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .card-subtitle {
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .card-text {
+    color: #7f8c8d;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .card-link {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 20px;
+  }
+
+  .card-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Product Container */
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-name {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .product-info, .product-description {
+    color: #7f8c8d;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .product-info strong, .product-description strong {
+    color: #2c3e50;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .product-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card {
+      width: 90%;
+    }
+
+    .product {
+      width: 80%;
+    }
+  }
+</style>
+
+<!-- Page Content -->
+
+<br><br><br><br><br>
+
+<div class="text-center">
+  <h2>Ruby Walmart<strong> E-Commerce</strong></h2>
+</div>
+
+<br>
+
+<div class="card custom-margin-left" style="width: 28rem;">
+  <div class="card-body">
+    <h5 class="card-title">Shop Ruby, the e-commerce built with Rails 7.1!</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">E-commerce Shop Ruby</h6>
+    <p class="card-text">Explore Shop Ruby, my largest e-commerce project for my portfolio!</p>
+    <a href="" class="card-link">Repository</a>
+    <a href="" class="card-link">LinkedIn</a>
+  </div>
+</div>
+
+
+<div class="product-container">
+ <% @products.each do |product| %>
+    <div class="product product-left" id="product-<%= product.id %>" onclick="window.location.href='<%= product_path(product) %>';">
+      <p class="product-name fs-5"><strong><%= product.name %> </strong></p>
+      <p class="product-info"><strong>Price: <%= number_to_currency(product.price, unit: 'R$', separator: ',', delimiter: '.') %> </strong></p>
+      <p class="product-description"><strong>Description: <%= product.description %> </strong></p>
+    </div>
+ <% end %>
+</div>

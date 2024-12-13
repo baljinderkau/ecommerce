@@ -1,0 +1,120 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="text-center">
+  <h2 class="page-title">Admin Activity Log</h2>
+</div>
+
+<!-- Activity Log Table -->
+<table class="table w-auto" id="activity-logs-table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col" class="text-center">User</th>
+      <th scope="col" class="text-center">Action</th>
+  
+     
+      <th scope="col" class="text-center">Date | Time </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @activity_logs.each do |activity_log| %>
+      <tr>
+        <td class="align-middle text-center"> <%= activity_log.user.email.split('@').first %> </td>
+        <td class="align-middle text-center"> <%= activity_log.action %> </td>
+            
+        <td class="align-middle text-center"> <%= activity_log.created_at.strftime('%Y-%m-%d %H:%M:%S') %> </td>
+    
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<style>
+  /* Global Styles */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4e73df;
+    margin-top: 50px;
+  }
+
+  .table {
+    background-color: white;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  .table th,
+  .table td {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .table th {
+    background-color: #4e73df;
+    color: white;
+    font-weight: bold;
+  }
+
+  .table-dark {
+    background-color: #2c3e50;
+    color: white;
+  }
+
+  .table tbody tr {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+
+  /* Action Buttons */
+  .btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0 5px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .btn-danger {
+    background-color: #e74a3b;
+    color: white;
+  }
+
+  .btn-info {
+    background-color: #17a2b8;
+    color: white;
+  }
+
+  .btn:hover {
+    opacity: 0.8;
+  }
+
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .table {
+      width: 100%;
+    }
+
+    .page-title {
+      font-size: 2rem;
+    }
+  }
+</style>
